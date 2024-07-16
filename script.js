@@ -58,20 +58,21 @@ function playRound(humanChoice, computerChoice) {
   }
 }
 
-// make a function to update the scores after a round is played
+function updateScore() {
+  document.getElementById("score--human").textContent = humanScore;
+  document.getElementById("score--computer").textContent = computerScore;
+}
 
 function playGame(humanChoice) {
   let round = playRound(humanChoice, getComputerChoice());
   if (round == "win") {
     humanScore++;
-    alert("You win");
+    updateScore();
   } else {
     computerScore++;
-    alert("You lose");
+    updateScore();
   }
 }
-
-//playGame();
 
 let buttons = document.getElementById("buttons");
 
