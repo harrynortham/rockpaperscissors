@@ -1,3 +1,6 @@
+let humanScore = 0;
+let computerScore = 0;
+
 // use math random Math.random()
 function getRandomInt(max) {
   return Math.floor(Math.random() * max);
@@ -21,14 +24,14 @@ function getComputerChoice() {
 
 // write a function to get the human choice using prompt method
 
-function getHumanChoice() {
-  let humanChoice = prompt(
-    "Do you choose Rock, Paper or Scissors?",
-    ""
-  ).toLowerCase();
+// function getHumanChoice() {
+//   let humanChoice = prompt(
+//     "Do you choose Rock, Paper or Scissors?",
+//     ""
+//   ).toLowerCase();
 
-  return humanChoice;
-}
+//   return humanChoice;
+// }
 
 // write function for the play round which will compare human and computer choice and update the variables
 
@@ -55,20 +58,34 @@ function playRound(humanChoice, computerChoice) {
   }
 }
 
-function playGame() {
-  let humanScore = 0;
-  let computerScore = 0;
+// make a function to update the scores after a round is played
 
-  for (let i = 0; i < 5; i++) {
-    let round = playRound(getHumanChoice(), getComputerChoice());
-    if (round == "win") {
-      humanScore++;
-      alert("You win");
-    } else {
-      computerScore++;
-      alert("You lose");
-    }
+function playGame(humanChoice) {
+  let round = playRound(humanChoice, getComputerChoice());
+  if (round == "win") {
+    humanScore++;
+    alert("You win");
+  } else {
+    computerScore++;
+    alert("You lose");
   }
 }
 
-playGame();
+//playGame();
+
+let buttons = document.getElementById("buttons");
+
+buttons.addEventListener("click", (e) => {
+  //console.log(e.target.id);
+
+  switch (e.target.id) {
+    case "button--rock":
+      playGame("rock");
+      break;
+    case "button--paper":
+      playGame("paper");
+      break;
+    case "button--scissors":
+      playGame("scissors");
+  }
+});
