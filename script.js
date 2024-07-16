@@ -1,5 +1,6 @@
 let humanScore = 0;
 let computerScore = 0;
+let buttons = document.getElementById("buttons");
 
 // use math random Math.random()
 function getRandomInt(max) {
@@ -58,9 +59,24 @@ function playRound(humanChoice, computerChoice) {
   }
 }
 
+function resetScore() {
+  humanScore = 0;
+  computerScore = 0;
+  document.getElementById("score--human").textContent = 0;
+  document.getElementById("score--computer").textContent = 0;
+}
+
 function updateScore() {
-  document.getElementById("score--human").textContent = humanScore;
-  document.getElementById("score--computer").textContent = computerScore;
+  if (humanScore == 5) {
+    alert("You win");
+    resetScore();
+  } else if (computerScore == 5) {
+    alert("You lose");
+    resetScore();
+  } else {
+    document.getElementById("score--human").textContent = humanScore;
+    document.getElementById("score--computer").textContent = computerScore;
+  }
 }
 
 function playGame(humanChoice) {
@@ -74,11 +90,8 @@ function playGame(humanChoice) {
   }
 }
 
-let buttons = document.getElementById("buttons");
-
 buttons.addEventListener("click", (e) => {
   //console.log(e.target.id);
-
   switch (e.target.id) {
     case "button--rock":
       playGame("rock");
